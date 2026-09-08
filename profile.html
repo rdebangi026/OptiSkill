@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile – OptiSkill</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; }
+    .gradient-bg { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #7c3aed 100%); }
+    .sidebar-item { transition: background 0.15s; }
+    .sidebar-item:hover { background: rgba(255,255,255,0.15); }
+    .sidebar-item.active { background: rgba(255,255,255,0.2); }
+    .animate-fade { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+  <nav class="gradient-bg text-white px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow-lg">
+    <div class="flex items-center gap-3">
+      <button onclick="toggleSidebar()" class="lg:hidden text-white"><i class="fas fa-bars text-xl"></i></button>
+      <a href="index.html" class="flex items-center gap-2"><i class="fas fa-graduation-cap text-xl"></i><span class="text-xl font-bold">Opti<span class="text-yellow-300">Skill</span></span></a>
+    </div>
+    <div class="flex items-center gap-3">
+      <div id="user-avatar" class="w-9 h-9 bg-yellow-400 text-gray-900 font-bold rounded-full flex items-center justify-center cursor-pointer text-sm">A</div>
+    </div>
+  </nav>
+
+  <div class="flex flex-1">
+    <aside id="sidebar" class="gradient-bg text-white w-64 min-h-screen p-4 flex flex-col gap-1 fixed lg:static z-30 top-14 left-0 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+      <div class="bg-white/10 rounded-xl p-3 mb-4 text-center">
+        <div id="sb-avatar" class="w-14 h-14 bg-yellow-400 text-gray-900 font-bold rounded-full flex items-center justify-center mx-auto text-xl mb-2">A</div>
+        <p class="font-semibold text-sm" id="sb-name">Arjun Sharma</p>
+        <p class="text-white/60 text-xs" id="sb-email">student@optiskill.com</p>
+      </div>
+      <a href="dashboard.html" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-home w-5 text-center"></i> Dashboard</a>
+      <a href="internships.html" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-briefcase w-5 text-center"></i> Internships</a>
+      <a href="scholarships.html" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-medal w-5 text-center"></i> Scholarships</a>
+      <a href="placements.html" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-user-tie w-5 text-center"></i> Placements</a>
+      <a href="skill-assessment.html" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-brain w-5 text-center"></i> Skill Assessment</a>
+      <a href="ats-checker.html" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-file-alt w-5 text-center"></i> ATS CV Checker</a>
+      <a href="cv-creator.html" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-pen-to-square w-5 text-center"></i> CV Creator</a>
+      <a href="profile.html" class="sidebar-item active flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium"><i class="fas fa-user w-5 text-center"></i> My Profile</a>
+      <div class="mt-auto pt-4 border-t border-white/20">
+        <button onclick="logout()" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium sidebar-item text-red-300"><i class="fas fa-sign-out-alt w-5 text-center"></i> Logout</button>
+      </div>
+    </aside>
+
+    <main class="flex-1 p-4 md:p-6 overflow-auto">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">👤 My Profile</h1>
+
+        <!-- Profile Header -->
+        <div class="gradient-bg rounded-2xl p-6 text-white mb-6 relative overflow-hidden">
+          <div class="absolute right-0 top-0 w-40 h-40 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+          <div class="flex items-center gap-5">
+            <div id="profile-avatar" class="w-20 h-20 bg-yellow-400 text-gray-900 font-bold rounded-2xl flex items-center justify-center text-3xl shadow-lg">A</div>
+            <div>
+              <h2 id="profile-name" class="text-2xl font-bold">Arjun Sharma</h2>
+              <p id="profile-email" class="text-white/70 text-sm">student@optiskill.com</p>
+              <div class="flex gap-2 mt-2 flex-wrap">
+                <span class="bg-white/20 text-white text-xs px-3 py-1 rounded-full">B.Tech – CS</span>
+                <span class="bg-white/20 text-white text-xs px-3 py-1 rounded-full">Final Year</span>
+                <span class="bg-yellow-400/80 text-gray-900 text-xs px-3 py-1 rounded-full font-semibold">Profile 65% Complete</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="bg-white rounded-2xl p-4 text-center shadow-sm border border-gray-100">
+            <div id="stat-applications" class="text-2xl font-bold text-blue-600">0</div>
+            <div class="text-gray-400 text-xs mt-1">Applications</div>
+          </div>
+          <div class="bg-white rounded-2xl p-4 text-center shadow-sm border border-gray-100">
+            <div id="stat-tests" class="text-2xl font-bold text-purple-600">0</div>
+            <div class="text-gray-400 text-xs mt-1">Tests Taken</div>
+          </div>
+          <div class="bg-white rounded-2xl p-4 text-center shadow-sm border border-gray-100">
+            <div id="stat-certs" class="text-2xl font-bold text-green-600">0</div>
+            <div class="text-gray-400 text-xs mt-1">Certificates</div>
+          </div>
+        </div>
+
+        <!-- Edit Form -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-6">
+          <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fas fa-edit text-blue-500"></i> Edit Profile</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-medium text-gray-500 block mb-1">Full Name</label>
+              <input id="edit-name" type="text" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"/>
+            </div>
+            <div>
+              <label class="text-xs font-medium text-gray-500 block mb-1">Email</label>
+              <input id="edit-email" type="email" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300" readonly/>
+            </div>
+            <div>
+              <label class="text-xs font-medium text-gray-500 block mb-1">College / University</label>
+              <input id="edit-college" type="text" placeholder="IIT Delhi" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"/>
+            </div>
+            <div>
+              <label class="text-xs font-medium text-gray-500 block mb-1">Degree & Stream</label>
+              <input id="edit-degree" type="text" placeholder="B.Tech – Computer Science" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"/>
+            </div>
+            <div>
+              <label class="text-xs font-medium text-gray-500 block mb-1">Year of Study</label>
+              <select id="edit-year" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 bg-white">
+                <option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>Final Year</option><option>Graduated</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-medium text-gray-500 block mb-1">Phone</label>
+              <input id="edit-phone" type="tel" placeholder="+91 98765 43210" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"/>
+            </div>
+            <div class="md:col-span-2">
+              <label class="text-xs font-medium text-gray-500 block mb-1">Skills (comma separated)</label>
+              <input id="edit-skills" type="text" placeholder="JavaScript, Python, React, SQL" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"/>
+            </div>
+            <div class="md:col-span-2">
+              <label class="text-xs font-medium text-gray-500 block mb-1">About Me</label>
+              <textarea id="edit-bio" rows="3" placeholder="Tell recruiters about yourself..." class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none"></textarea>
+            </div>
+          </div>
+          <button onclick="saveProfile()" class="mt-4 gradient-bg text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90">Save Changes</button>
+        </div>
+
+        <!-- Applications History -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-6">
+          <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fas fa-history text-purple-500"></i> Application History</h3>
+          <div id="app-history" class="space-y-3"></div>
+        </div>
+
+        <!-- Test Scores -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2"><i class="fas fa-trophy text-yellow-500"></i> Skill Test Scores</h3>
+          <div id="test-scores" class="space-y-3"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const user = requireAuth('student');
+    if (user) {
+      document.getElementById('user-avatar').textContent = user.name[0];
+      document.getElementById('sb-avatar').textContent = user.name[0];
+      document.getElementById('sb-name').textContent = user.name;
+      document.getElementById('sb-email').textContent = user.email;
+      document.getElementById('profile-name').textContent = user.name;
+      document.getElementById('profile-email').textContent = user.email;
+      document.getElementById('profile-avatar').textContent = user.name[0];
+      document.getElementById('edit-name').value = user.name;
+      document.getElementById('edit-email').value = user.email;
+
+      // Load saved profile extras
+      const saved = JSON.parse(localStorage.getItem('optiskill_profile') || '{}');
+      if (saved.college) document.getElementById('edit-college').value = saved.college;
+      if (saved.degree) document.getElementById('edit-degree').value = saved.degree;
+      if (saved.phone) document.getElementById('edit-phone').value = saved.phone;
+      if (saved.skills) document.getElementById('edit-skills').value = saved.skills;
+      if (saved.bio) document.getElementById('edit-bio').value = saved.bio;
+    }
+
+    // Stats
+    const applied = getApplied();
+    document.getElementById('stat-applications').textContent = applied.length;
+    const tests = JSON.parse(localStorage.getItem('optiskill_tests') || '{}');
+    const testKeys = Object.keys(tests);
+    document.getElementById('stat-tests').textContent = testKeys.length;
+    document.getElementById('stat-certs').textContent = testKeys.filter(k => tests[k] >= 60).length;
+
+    // Application History
+    const appHistEl = document.getElementById('app-history');
+    if (applied.length === 0) {
+      appHistEl.innerHTML = '<p class="text-gray-400 text-sm text-center py-4">No applications yet. Start applying! 🚀</p>';
+    } else {
+      const allItems = [...INTERNSHIPS.map(i => ({...i, type:'internship'})), ...SCHOLARSHIPS.map(i => ({...i, type:'scholarship'})), ...PLACEMENTS.map(i => ({...i, type:'placement'}))];
+      const appliedItems = applied.map(key => {
+        const [type, id] = key.split('-');
+        return allItems.find(i => i.type === type && i.id === parseInt(id));
+      }).filter(Boolean);
+      const icons = { internship: '💼', scholarship: '🏆', placement: '👔' };
+      appHistEl.innerHTML = appliedItems.map(item => `
+        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+          <div class="text-2xl">${icons[item.type]}</div>
+          <div class="flex-1">
+            <p class="font-semibold text-gray-800 text-sm">${item.title}</p>
+            <p class="text-gray-400 text-xs">${item.company || item.org} • ${item.type.charAt(0).toUpperCase() + item.type.slice(1)}</p>
+          </div>
+          <span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded-full font-semibold">Applied</span>
+        </div>`).join('');
+    }
+
+    // Test Scores
+    const testEl = document.getElementById('test-scores');
+    if (testKeys.length === 0) {
+      testEl.innerHTML = '<p class="text-gray-400 text-sm text-center py-4">No tests taken yet. Visit Skill Assessment! 🧠</p>';
+    } else {
+      testEl.innerHTML = testKeys.map(k => {
+        const a = ASSESSMENTS.find(x => x.id === k);
+        if (!a) return '';
+        const score = tests[k];
+        const passed = score >= 60;
+        return `
+        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+          <div class="text-2xl">${a.badge}</div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <p class="font-semibold text-gray-800 text-sm">${a.title}</p>
+              <span class="${passed ? 'text-green-600' : 'text-red-500'} font-bold text-sm">${score}%</span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-1.5">
+              <div class="${passed ? 'bg-green-500' : 'bg-red-400'} h-1.5 rounded-full" style="width:${score}%"></div>
+            </div>
+          </div>
+          ${passed ? '<span class="text-yellow-500 text-lg">🏅</span>' : ''}
+        </div>`;
+      }).join('');
+    }
+
+    function saveProfile() {
+      const profile = {
+        college: document.getElementById('edit-college').value,
+        degree: document.getElementById('edit-degree').value,
+        phone: document.getElementById('edit-phone').value,
+        skills: document.getElementById('edit-skills').value,
+        bio: document.getElementById('edit-bio').value,
+      };
+      localStorage.setItem('optiskill_profile', JSON.stringify(profile));
+      const name = document.getElementById('edit-name').value;
+      const u = JSON.parse(localStorage.getItem('optiskill_user') || '{}');
+      u.name = name;
+      localStorage.setItem('optiskill_user', JSON.stringify(u));
+      const t = document.createElement('div');
+      t.className = 'fixed bottom-6 right-6 bg-green-600 text-white px-5 py-3 rounded-xl shadow-lg text-sm font-semibold z-50';
+      t.textContent = 'Profile saved! ✅';
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 2500);
+    }
+
+    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('-translate-x-full'); }
+  </script>
+</body>
+</html>
